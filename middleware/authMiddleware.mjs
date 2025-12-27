@@ -20,7 +20,7 @@ export const authMiddleware = (req, res, next) => {
         const decoded = jwt.verify(token, secret);
 
         // 3. Guardar los datos del usuario en la request
-        req.user = decoded;
+        req.usuario = decoded;
         next();
     } catch (error) {
         return res.status(401).json({ error: 'Invalid token' });

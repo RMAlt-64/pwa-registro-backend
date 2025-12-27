@@ -4,6 +4,7 @@ import { connectDB } from './config/database.mjs';
 import { syncModels } from './models/index.mjs';
 import authRoutes from './routes/authRoutes.mjs';
 import usuarioRoutes from './routes/usuarioRoutes.mjs';
+import registroRoutes from './routes/registroRoutes.mjs';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +28,7 @@ async function startServer() {
     // 3. Rutas de la API
     app.use('/api/auth', authRoutes);
     app.use('/api/usuarios', usuarioRoutes);
+    app.use('/api/registros', registroRoutes);
 
     app.listen(PORT, () => {
         console.log(`🚀 Servidor Express corriendo en http://localhost:${PORT}/`);

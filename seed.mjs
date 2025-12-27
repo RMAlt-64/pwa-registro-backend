@@ -1,4 +1,4 @@
-import { sequelize, Usuario, Puesto, Asignacion } from './models/index.mjs';
+import { sequelize, Usuario, Puesto, Asignacion, Registro } from './models/index.mjs';
 import bcrypt from 'bcrypt';
 
 const seed = async () => {
@@ -50,6 +50,18 @@ const seed = async () => {
             puesto_id: puesto.id_puesto,
             es_primario: true,
             fecha_inicio: new Date()
+        });
+
+        // 6 Crear registros de prueba
+        await Registro.create({
+            personal_id: 1,
+            timestamp_registro: new Date(),
+            latitud_capturada: -32.921895961169156,
+            longitud_capturada: -60.66367130109169,
+            id_puesto: 1,
+            tipo: 'entrada',
+            fuera_de_rango: false,
+            distancia_metros: 50
         });
 
         console.log('✅ Datos de prueba insertados con éxito.');
