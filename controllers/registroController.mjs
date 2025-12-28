@@ -22,6 +22,7 @@ export const registrarAsistencia = async (req, res) => {
             parseFloat(puesto.longitud)
         );
 
+
         // 3. Determinamos si está fuera del radio permitido
         const esFueraDeRango = distancia > puesto.radio_validacion;
 
