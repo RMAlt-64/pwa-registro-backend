@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 // Importa la configuración y la función de conexión
 import { connectDB } from './config/database.mjs';
 import { syncModels } from './models/index.mjs';
@@ -11,7 +12,10 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware esencial
 app.use(express.json());
-
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 // Ruta de prueba
 app.get('/', (req, res) => {
     res.status(200).send('API de Registro de Personal Activa.');
