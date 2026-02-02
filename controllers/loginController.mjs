@@ -21,7 +21,7 @@ export const loginController = async (req, res) => {
 
         const token = jwt.sign({ id: usuario.user_id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.json({ token });
+        res.json({ token, rol: usuario.rol });
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         res.status(500).json({ error: 'Error al iniciar sesión' });
