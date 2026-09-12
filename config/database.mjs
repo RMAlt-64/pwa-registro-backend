@@ -2,18 +2,25 @@ import { Sequelize } from 'sequelize';
 import 'dotenv/config'; // Importa dotenv de forma directa para módulos ES
 
 // 1. Obtener las variables del .env
-const { DB_HOST, DB_USER, DB_PASS, DB_NAME } = process.env;
+const {
+    DB_HOST,
+    DB_USER,
+    DB_PASS,
+    DB_PASSWORD,
+    DB_NAME,
+    DB_PORT,
+} = process.env;
 
 // 2. Crear la instancia de Sequelize
 const sequelize = new Sequelize(
     DB_NAME,
     DB_USER,
-    DB_PASS,
+    DB_PASS || DB_PASSWORD,
     {
         host: DB_HOST,
         dialect: 'postgres', // Especifica el motor de BD
         logging: false, // Puedes poner 'console.log' para ver las consultas SQL
-        port: 5432 // Puerto estándar de PostgreSQL
+        port: Number(DB_PORT) || 5432,
     }
 );
 

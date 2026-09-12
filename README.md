@@ -20,7 +20,7 @@ API Node/Express + PostgreSQL/Sequelize con autenticación JWT y validación geo
 
 ## Stack
 
-Node.js (ESM) + Express 5.2 + Sequelize 6 + PostgreSQL 8 + pg-hstore + JWT/Bcrypt + CORS + Dotenv + Nodemon
+Node.js (ESM) + Express 5.2 + Sequelize 6 + PostgreSQL 8 + pg-hstore + JWT/Bcrypt + CORS + Dotenv
 
 ## Estructura
 
@@ -39,16 +39,17 @@ seed.mjs
 
 ```bash
 npm install
-cp .env.example .env   # DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, JWT_SECRET
-npm run dev    # nodemon server.mjs → http://localhost:3000
+cp .env.example .env   # DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT, JWT_SECRET
+npm run dev    # node --watch server.mjs → http://localhost:3000
 npm start      # producción
 ```
 
-`.env` ejemplo:
+`.env` ejemplo (copiar desde `.env.example`):
 ```
+PORT=3000
 DB_HOST=localhost
 DB_USER=postgres
-DB_PASSWORD=***
+DB_PASS=***
 DB_NAME=pwa_registro
 DB_PORT=5432
 JWT_SECRET=***
