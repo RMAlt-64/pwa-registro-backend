@@ -3,7 +3,6 @@ import { sequelize } from '../config/database.mjs';
 // 1. Importar todos los modelos
 import Usuario from './Usuarios.mjs';
 import Puesto from './Puestos.mjs';
-import Asignacion from './Asignacion.mjs';
 import Registro from './Registro.mjs';
 
 // -----------------------------------------------------------
@@ -17,8 +16,8 @@ Puesto.belongsTo(Usuario, { foreignKey: 'administrador_id', as: 'administrador' 
 
 // --- Relación Personal -> Registros (1:N) ---
 // Un usuario tiene muchos registros de entrada/salida.
-Usuario.hasMany(Registro, { foreignKey: 'personal_id', as: 'mis_registros' });
-Registro.belongsTo(Usuario, { foreignKey: 'personal_id', as: 'empleado' });
+Usuario.hasMany(Registro, { foreignKey: 'user_id', as: 'mis_registros' });
+Registro.belongsTo(Usuario, { foreignKey: 'user_id', as: 'empleado' });
 
 // --- Relación Puesto -> Registros (1:N) ---
 // En un puesto se realizan muchos registros de diferentes personas.
@@ -28,16 +27,16 @@ Registro.belongsTo(Puesto, { foreignKey: 'id_puesto', as: 'puesto' });
 // --- Relación MUCHOS A MUCHOS (Usuarios <-> Puestos) ---
 // Aquí es donde manejamos que un empleado pueda tener 1, 2 o más puestos asignados.
 Usuario.belongsToMany(Puesto, {
-    through: Asignacion,
-    foreignKey: 'personal_id',
+    through: 'UsuarioPuesto', // Nombre de la tabla intermedia
+    foreignKey: 'user_id',
     otherKey: 'puesto_id',
     as: 'puestos_permitidos'
 });
 
 Puesto.belongsToMany(Usuario, {
-    through: Asignacion,
+    through: 'UsuarioPuesto', // Nombre de la tabla intermedia
     foreignKey: 'puesto_id',
-    otherKey: 'personal_id',
+    otherKey: 'user_id',
     as: 'personal_autorizado'
 });
 
@@ -60,7 +59,6 @@ export {
     sequelize,
     Usuario,
     Puesto,
-    Asignacion,
     Registro,
     syncModels
 };

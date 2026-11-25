@@ -7,19 +7,21 @@ import authRoutes from './routes/authRoutes.mjs';
 import usuarioRoutes from './routes/usuarioRoutes.mjs';
 import registroRoutes from './routes/registroRoutes.mjs';
 
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware esencial
 app.use(express.json());
-app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
-}));
-// Ruta de prueba
-app.get('/', (req, res) => {
-    res.status(200).send('API de Registro de Personal Activa.');
-});
+
+// Configuración de CORS dinámica usando la variable de entorno
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN, 
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 // Función de inicio que ahora incluirá la conexión a la DB
 async function startServer() {

@@ -10,7 +10,7 @@ const Registro = sequelize.define(
             primaryKey: true,
             autoIncrement: true,
         },
-        personal_id: {
+        user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
@@ -32,7 +32,7 @@ const Registro = sequelize.define(
             allowNull: false,
         },
         tipo: {
-            type: DataTypes.ENUM('entrada', 'salida'),
+            type: DataTypes.ENUM('Entrada', 'Salida'),
             allowNull: false,
         },
         fuera_de_rango: {

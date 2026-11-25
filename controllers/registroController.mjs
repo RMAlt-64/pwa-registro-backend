@@ -28,7 +28,7 @@ export const registrarAsistencia = async (req, res) => {
 
         // 4. Creamos el registro con la "etiqueta" de rango
         const nuevoRegistro = await Registro.create({
-            personal_id,
+            user_id,
             id_puesto,
             tipo,
             latitud_capturada: lat_celular,

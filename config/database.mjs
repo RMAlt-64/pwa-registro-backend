@@ -1,6 +1,5 @@
 import { Sequelize } from 'sequelize';
 import 'dotenv/config'; // Importa dotenv de forma directa para módulos ES
-
 // 1. Obtener las variables del .env
 const {
     DB_HOST,
@@ -19,7 +18,7 @@ const sequelize = new Sequelize(
     {
         host: DB_HOST,
         dialect: 'postgres', // Especifica el motor de BD
-        logging: false, // Puedes poner 'console.log' para ver las consultas SQL
+        logging: console.log, // Puedes poner 'console.log' para ver las consultas SQL
         port: Number(DB_PORT) || 5432,
     }
 );

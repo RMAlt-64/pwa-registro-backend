@@ -1,4 +1,4 @@
-import { sequelize, Usuario, Puesto, Asignacion, Registro } from './models/index.mjs';
+import { sequelize, Usuario, Puesto, Registro } from './models/index.mjs';
 import bcrypt from 'bcrypt';
 
 const seed = async () => {
@@ -44,17 +44,9 @@ const seed = async () => {
             status: true
         });
 
-        // 5. Crear la Asignación (Unir empleado con puesto)
-        await Asignacion.create({
-            personal_id: empleado.user_id,
-            puesto_id: puesto.id_puesto,
-            es_primario: true,
-            fecha_inicio: new Date()
-        });
-
         // 6 Crear registros de prueba
         await Registro.create({
-            personal_id: 1,
+            user_id: 1,
             timestamp_registro: new Date(),
             latitud_capturada: -32.921895961169156,
             longitud_capturada: -60.66367130109169,

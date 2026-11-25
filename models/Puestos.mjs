@@ -26,11 +26,11 @@ const Puestos = sequelize.define(
             type: DataTypes.DECIMAL(10, 7),
             allowNull: false,
         },
-        administrador_id: {
+        user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        status: {
+        active: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: true,
